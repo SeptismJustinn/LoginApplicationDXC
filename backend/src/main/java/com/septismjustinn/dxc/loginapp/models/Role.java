@@ -15,11 +15,9 @@ public class Role {
     private List<User> usersList;
 
     public Role() {
-        super();
     }
 
     public Role(String rolename, List<User> usersList) {
-        super();
         this.rolename = rolename;
         this.usersList = usersList;
     }

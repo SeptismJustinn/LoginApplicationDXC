@@ -10,6 +10,7 @@ import java.util.UUID;
 public class User {
 
     @Id
+    @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
@@ -24,11 +25,10 @@ public class User {
     private Role role;
 
     public User() {
-        super();
+        this.id = UUID.randomUUID();
     }
 
     public User(String name, String username, Role role) {
-        super();
         this.name = name;
         this.username = username;
         this.role = role;

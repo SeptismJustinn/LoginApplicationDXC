@@ -17,15 +17,13 @@ public class Login {
     private UUID access_parent;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "USER_ID", referencedColumnName = "id")
+    @JoinColumn(name = "USER_ID", referencedColumnName = "ID")
     private User user;
 
     public Login() {
-        super();
     }
 
     public Login(UUID jti, boolean refresh, UUID access_parent, User user) {
-        super();
         this.jti = jti;
         this.refresh = refresh;
         this.access_parent = access_parent;
