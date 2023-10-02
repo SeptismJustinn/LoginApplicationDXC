@@ -20,6 +20,9 @@ public class User {
     @Column(name = "USERNAME")
     private String username;
 
+    @Column(name = "HASH")
+    private String hash;
+
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ROLE_NAME")
     private Role role;
@@ -28,37 +31,10 @@ public class User {
         this.id = UUID.randomUUID();
     }
 
-    public User(String name, String username, Role role) {
+    public User(String name, String username, String hash, Role role) {
         this.name = name;
         this.username = username;
-        this.role = role;
-    }
-
-    public UUID getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public Role getRole() {
-        return role;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public void setRole(Role role) {
+        this.hash = hash;
         this.role = role;
     }
 }
