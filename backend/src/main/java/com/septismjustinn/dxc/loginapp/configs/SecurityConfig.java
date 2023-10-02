@@ -13,8 +13,8 @@ public class SecurityConfig {
         return http.authorizeHttpRequests(
                 (authz) -> authz
                         .requestMatchers("/public/**").permitAll()
+                        .requestMatchers("/protected/admin").hasRole("Admin")
                         .requestMatchers("/protected/**").authenticated()
-                        .requestMatchers("/admin/**").hasRole("Admin")
                 )
                 .build();
     }

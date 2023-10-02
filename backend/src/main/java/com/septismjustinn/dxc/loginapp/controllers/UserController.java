@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/protected/users")
+@RequestMapping("/protected/user")
 public class UserController {
     private final UserService userService;
 
