@@ -23,8 +23,8 @@ public class User {
     @Column(name = "HASH")
     private String hash;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "ROLE_NAME")
+    @Column(name = "ROLE")
+    @Enumerated(EnumType.STRING)
     private Role role;
 
     public User() {
@@ -36,5 +36,17 @@ public class User {
         this.username = username;
         this.hash = hash;
         this.role = role;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getHash() {
+        return hash;
+    }
+
+    public Role getRole() {
+        return role;
     }
 }
