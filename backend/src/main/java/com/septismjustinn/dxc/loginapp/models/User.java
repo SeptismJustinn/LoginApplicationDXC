@@ -32,10 +32,10 @@ public class User implements UserDetails {
     private Role role;
 
     public User() {
-        this.id = UUID.randomUUID();
     }
 
     public User(String name, String username, String hash, Role role) {
+        this.id = UUID.randomUUID();
         this.name = name;
         this.username = username;
         this.hash = hash;
@@ -66,8 +66,12 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        // You don't talk about UserRoles, so return ADMIN for everybody or implement roles.
-        return List.of(new SimpleGrantedAuthority(role.toString()));
+        if (role != null) {
+            return List.of(new SimpleGrantedAuthority(role.toString()));
+        } else {
+            // Allow unauthorized users to access unprotected endpoints
+            return List.of(new SimpleGrantedAuthority("Public"));
+        }
     }
 
     @Override
