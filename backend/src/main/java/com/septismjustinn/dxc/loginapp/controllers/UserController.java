@@ -3,15 +3,12 @@ package com.septismjustinn.dxc.loginapp.controllers;
 import com.septismjustinn.dxc.loginapp.models.User;
 import com.septismjustinn.dxc.loginapp.services.UserService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/protected/users")
 public class UserController {
     private final UserService userService;
 
@@ -20,7 +17,7 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<User> getUser(@RequestBody Map<String, String> req) {
+    public ResponseEntity<User> getUser(@RequestBody Map<String, String> req, @RequestHeader("Authorization") String token) {
         System.out.println("Getting " + req.get("username"));
         return ResponseEntity.of(userService.getUser(req.get("username")));
     }
