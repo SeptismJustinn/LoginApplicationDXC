@@ -33,7 +33,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/public/register").permitAll()
                         .requestMatchers(HttpMethod.POST, "/public/login").permitAll()
                         .requestMatchers("/public/**").permitAll()
-                        .requestMatchers("/protected/admin").hasRole(Role.ADMIN.toString())
+                        .requestMatchers("/protected/admin").hasAuthority("Admin")
                         .requestMatchers("/protected/**").authenticated()
                 )
                 .sessionManagement((manager) -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
