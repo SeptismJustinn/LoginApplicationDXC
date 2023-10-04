@@ -34,9 +34,11 @@ public class LoginController {
             UUID jti = UUID.randomUUID();
             System.out.println("Registering login");
             boolean registered = loginService.registerLogin(jti, user);
-            if (true) {
+            if (registered) {
                 System.out.println(user.getName() + " logged in");
-                return new ResponseEntity(jwtService.generateAccessToken(jti, user), HttpStatus.OK);
+                Map<String, Object> res = new HashMap<>();
+                res.put("access_token",jwtService.generateAccessToken(jti, user) );
+                return new ResponseEntity(res, HttpStatus.OK);
             } else {
                 return new ResponseEntity<>("Error with database", HttpStatus.BAD_GATEWAY);
             }
