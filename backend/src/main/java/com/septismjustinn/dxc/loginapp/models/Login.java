@@ -34,4 +34,13 @@ public class Login {
 //        this.access_parent = access_parent;
 //        this.user = user;
 //    }
+
+
+    public UUID getJti() {
+        return jti;
+    }
+
+    public User getUser() {
+        return user;
+    }
 }
