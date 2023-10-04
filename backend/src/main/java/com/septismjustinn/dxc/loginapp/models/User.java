@@ -42,6 +42,10 @@ public class User implements UserDetails {
         this.role = role;
     }
 
+    public UUID getId() {
+        return id;
+    }
+
     public String getName() {
         return name;
     }
