@@ -10,11 +10,11 @@ public class Login {
     @Id
     private UUID jti;
 
-    @Column(name = "REFRESH")
-    private boolean refresh;
-
-    @Column(name = "ACCESS_PARENT")
-    private UUID access_parent;
+//    @Column(name = "REFRESH")
+//    private boolean refresh;
+//
+//    @Column(name = "ACCESS_PARENT")
+//    private UUID access_parent;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "USER_ID", referencedColumnName = "ID")
@@ -23,10 +23,15 @@ public class Login {
     public Login() {
     }
 
-    public Login(UUID jti, boolean refresh, UUID access_parent, User user) {
+    public Login(UUID jti, User user) {
         this.jti = jti;
-        this.refresh = refresh;
-        this.access_parent = access_parent;
         this.user = user;
     }
+
+    //    public Login(UUID jti, boolean refresh, UUID access_parent, UUID user) {
+//        this.jti = jti;
+//        this.refresh = refresh;
+//        this.access_parent = access_parent;
+//        this.user = user;
+//    }
 }
