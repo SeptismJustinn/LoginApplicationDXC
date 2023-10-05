@@ -1,0 +1,33 @@
+.switch_container {
+  width: 80px;
+}
+
+.switch_back {
+  display: flex;
+  border-radius: 5px;
+  height: 30px;
+  align-items: center;
+}
+
+.switch1 {
+  justify-content: baseline;
+  background-color: blueviolet;
+}
+
+.switch2 {
+  justify-content: end;
+  background-color: cadetblue;
+}
+
+.checkbox {
+  display: none;
+}
+
+.switch {
+  display: block;
+  background-color: white;
+  width: 34px;
+  height: 24px;
+  margin: 3px;
+  border-radius: 5px;
+}
