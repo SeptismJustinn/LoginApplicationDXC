@@ -15,7 +15,7 @@ import java.util.Map;
 @RequestMapping("/protected/encoder")
 @CrossOrigin
 public class EncoderController {
-    @GetMapping
+    @PatchMapping
     public ResponseEntity<Map<String, Object>> decode(@RequestBody @Valid DecodeRequest req) {
         Map<String, Object> res = new HashMap<>();
         res.put("content", Encoder.decode(req.getPlainText()));
