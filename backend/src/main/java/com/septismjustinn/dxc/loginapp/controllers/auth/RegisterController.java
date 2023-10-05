@@ -36,7 +36,12 @@ public class RegisterController {
             return new ResponseEntity(res, HttpStatus.OK);
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            res.put("message", "Error registering");
+            if (e.getMessage() == "User already exists") {
+                res.put("message", e.getMessage());
+
+            } else {
+                res.put("message", "Error registering user");
+            }
             res.put("status", false);
             return new ResponseEntity(res, HttpStatus.BAD_REQUEST);
         }
