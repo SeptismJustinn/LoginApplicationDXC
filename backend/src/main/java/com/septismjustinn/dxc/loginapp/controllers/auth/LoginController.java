@@ -7,7 +7,6 @@ import com.septismjustinn.dxc.loginapp.validators.AuthRequest;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -16,6 +15,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/public/login")
+@CrossOrigin
 public class LoginController {
     private final LoginService loginService;
     private final JWTService jwtService;

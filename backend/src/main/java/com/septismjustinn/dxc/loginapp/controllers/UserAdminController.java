@@ -4,6 +4,7 @@ import com.septismjustinn.dxc.loginapp.models.User;
 import com.septismjustinn.dxc.loginapp.services.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,6 +15,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/protected/admin")
+@CrossOrigin
 public class UserAdminController {
     private final UserService userService;
 

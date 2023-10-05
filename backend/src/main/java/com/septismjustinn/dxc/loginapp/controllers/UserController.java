@@ -15,6 +15,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/protected/user")
+@CrossOrigin
 public class UserController {
     private final UserService userService;
     private final JWTService jwtService;

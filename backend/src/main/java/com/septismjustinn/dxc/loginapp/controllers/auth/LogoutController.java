@@ -4,10 +4,7 @@ import com.septismjustinn.dxc.loginapp.services.JWTService;
 import com.septismjustinn.dxc.loginapp.services.LoginService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -15,6 +12,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/protected/logout")
+@CrossOrigin
 public class LogoutController {
     private final JWTService jwtService;
     private final LoginService loginService;
