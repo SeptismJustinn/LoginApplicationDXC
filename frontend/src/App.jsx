@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import Login from "./components/Login";
 import User from "./helpers/objectClasses";
 import UserProfile from "./components/UserProfile";
 import UsersListToggle from "./components/UsersListToggle";
+import styles from "./css/App.module.css";
 
 function App() {
   const [user, setUser] = useState(new User());
@@ -10,14 +11,14 @@ function App() {
   if (user.role == "ADMIN") {
     if (showUsers) {
       return (
-        <div>
+        <div className={styles.main_page}>
           <UsersListToggle setShowUsers={setShowUsers} />
           <UsersList />
         </div>
       );
     } else {
       return (
-        <div>
+        <div className={styles.main_page}>
           <UsersListToggle setShowUsers={setShowUsers} />
           <UserProfile user={user} />
         </div>
@@ -25,13 +26,13 @@ function App() {
     }
   } else if (user.role == "USER") {
     return (
-      <div>
+      <div className={styles.main_page}>
         <UserProfile user={user} />
       </div>
     );
   } else {
     return (
-      <div>
+      <div className={styles.main_page}>
         <Login setUser={setUser} />
       </div>
     );
