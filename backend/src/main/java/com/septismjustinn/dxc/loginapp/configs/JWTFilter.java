@@ -30,8 +30,11 @@ public class JWTFilter extends OncePerRequestFilter {
                                     @NonNull FilterChain filterChain)
         throws ServletException, IOException {
         String authHeader = req.getHeader("Authorization");
-        if (authHeader == null || authHeader == "" || !authHeader.startsWith("Bearer ")) {
+        System.out.println(authHeader.length());
+        if (authHeader == null || authHeader == "" ||
+                !authHeader.startsWith("Bearer ") || authHeader.equals("Bearer undefined")) {
             // If no Bearer, do nothing and proceed with chain.
+            System.out.println("No access token");
         } else {
             String jwt = authHeader.substring(7);
             Optional<UserDetails> validJwt = jwtService.isTokenValid(jwt);
