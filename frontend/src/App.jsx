@@ -6,6 +6,7 @@ import UsersListToggle from "./components/UsersListToggle";
 import styles from "./css/App.module.css";
 import UsersList from "./components/UsersList";
 import Register from "./components/Register";
+import Encoder from "./components/Encoder";
 
 function App() {
   const [user, setUser] = useState(new User());
@@ -24,6 +25,7 @@ function App() {
         <div className={styles.main_page}>
           <UsersListToggle showUsers={showUsers} setShowUsers={setShowUsers} />
           <UserProfile user={user} />
+          <Encoder />
         </div>
       );
     }
@@ -31,6 +33,7 @@ function App() {
     return (
       <div className={styles.main_page}>
         <UserProfile user={user} />
+        <Encoder />
       </div>
     );
   } else {
