@@ -7,10 +7,12 @@ import com.septismjustinn.dxc.loginapp.validators.AuthRequest;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.UUID;
 
 @RestController
@@ -39,7 +41,7 @@ public class LoginController {
             boolean registered = loginService.registerLogin(jti, user);
             if (registered) {
                 Map<String, Object> data = new HashMap<>();
-                data.put("access_token",jwtService.generateAccessToken(jti, user) );
+                data.put("access_token",jwtService.generateAccessToken(jti, user));
                 res.put("content", data);
                 res.put("status", true);
                 return new ResponseEntity(res, HttpStatus.OK);
@@ -51,6 +53,26 @@ public class LoginController {
             res.put("message", "Error with database");
             res.put("status", false);
             return new ResponseEntity<>(res, HttpStatus.UNAUTHORIZED);
+        }
+    }
+
+    @GetMapping
+    public ResponseEntity<Map<String, Object>> tokenLogin(@RequestHeader("Authorization") String header) {
+        Map<String, Object> res = new HashMap<>();
+        try {
+            Optional<UserDetails> user = jwtService.isTokenValid(header.substring(7));
+            if (user.isPresent()) {
+                res.put("content", "Logged in with existing token");
+                res.put("status", true);
+                return new ResponseEntity(res, HttpStatus.OK);
+            } else {
+                throw new Exception("Invalid access token");
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            res.put("message", "Error resuming old session, please log in normally");
+            res.put("status", false);
+            return new ResponseEntity<>(res, HttpStatus.BAD_REQUEST);
         }
     }
 
