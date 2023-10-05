@@ -44,7 +44,7 @@ public class JWTService {
     }
 
     // Retrieve claims from JWT
-    public Claims extractClaim(String token) {
+    private Claims extractClaim(String token) {
         return Jwts.parserBuilder()
                 .setSigningKey(getSigningKey())
                 .build()
