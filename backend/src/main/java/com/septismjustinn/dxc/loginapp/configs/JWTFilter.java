@@ -33,7 +33,7 @@ public class JWTFilter extends OncePerRequestFilter {
         if (authHeader == null || authHeader == "" ||
                 !authHeader.startsWith("Bearer ") || authHeader.equals("Bearer undefined")) {
             // If no Bearer, do nothing and proceed with chain.
-            System.out.println("No access token");
+            // System.out.println("No access token");
         } else {
             String jwt = authHeader.substring(7);
             Optional<UserDetails> validJwt = jwtService.isTokenValid(jwt);
