@@ -33,15 +33,18 @@ public class LoginController {
             UUID jti = UUID.randomUUID();
             boolean registered = loginService.registerLogin(jti, user);
             if (registered) {
-                res.put("access_token",jwtService.generateAccessToken(jti, user) );
+                Map<String, Object> data = new HashMap<>();
+                data.put("access_token",jwtService.generateAccessToken(jti, user) );
+                res.put("content", data);
+                res.put("status", true);
                 return new ResponseEntity(res, HttpStatus.OK);
             } else {
                 throw new Exception("Unable to login user, check Logins table");
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            res.put("data", "Error with database");
-            res.put("ok", false);
+            res.put("message", "Error with database");
+            res.put("status", false);
             return new ResponseEntity<>(res, HttpStatus.UNAUTHORIZED);
         }
     }

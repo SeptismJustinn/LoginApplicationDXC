@@ -26,13 +26,13 @@ public class RegisterController {
         Map<String, Object> res = new HashMap<>();
         try {
             User newUser = userService.createUser(req.get("name"), req.get("username"), req.get("password"));
-            res.put("data", newUser);
-            res.put("ok", true);
+            res.put("content", newUser);
+            res.put("status", true);
             return new ResponseEntity(res, HttpStatus.OK);
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            res.put("data", "Error registering");
-            res.put("ok", false);
+            res.put("message", "Error registering");
+            res.put("status", false);
             return new ResponseEntity(res, HttpStatus.BAD_REQUEST);
         }
     }

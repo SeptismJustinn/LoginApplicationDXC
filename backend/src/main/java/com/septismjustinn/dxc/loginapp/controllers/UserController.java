@@ -24,23 +24,22 @@ public class UserController {
         this.jwtService = jwtService;
     }
 
-    @GetMapping
-    public ResponseEntity<Map<String, Object>> getUser(@RequestBody Map<String, String> req, @RequestHeader("Authorization") String token) {
+    @PostMapping
+    public ResponseEntity<Map<String, Object>> getUser(@RequestBody Map<String, String> req) {
         Map<String, Object> res = new HashMap<>();
-        Claims tokenBody = jwtService.extractClaim(token);
         try {
-            Optional<User> target = userService.getUser(tokenBody.getSubject());
+            Optional<User> target = userService.getUser(req.get("username"));
             if (target.isPresent()) {
-                res.put("data", target.get());
-                res.put("ok", true);
+                res.put("content", target.get());
+                res.put("status", true);
                 return new ResponseEntity<>(res, HttpStatus.OK);
             } else {
                 throw new UsernameNotFoundException("Error finding username");
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            res.put("data", "Error getting User");
-            res.put("ok", false);
+            res.put("message", "Error getting User");
+            res.put("status", false);
             return new ResponseEntity<>(res, HttpStatus.BAD_REQUEST);
         }
     }

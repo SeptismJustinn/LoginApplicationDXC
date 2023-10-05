@@ -25,14 +25,15 @@ public class UserAdminController {
     public ResponseEntity<Map<String, Object>> getAllUsers() {
         Map<String, Object> res = new HashMap<>();
         try {
+            System.out.println("Getting all users");
             List<User> allUsers = userService.getAllUsers();
-            res.put("data", allUsers);
-            res.put("ok", true);
+            res.put("content", allUsers);
+            res.put("status", true);
             return new ResponseEntity<>(res, HttpStatus.OK);
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            res.put("data", "Error getting all users");
-            res.put("ok", false);
+            res.put("message", "Error getting all users");
+            res.put("status", false);
             return new ResponseEntity<>(res, HttpStatus.BAD_REQUEST);
         }
     }
