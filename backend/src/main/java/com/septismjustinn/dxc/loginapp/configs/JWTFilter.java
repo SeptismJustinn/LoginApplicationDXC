@@ -30,7 +30,6 @@ public class JWTFilter extends OncePerRequestFilter {
                                     @NonNull FilterChain filterChain)
         throws ServletException, IOException {
         String authHeader = req.getHeader("Authorization");
-        System.out.println(authHeader.length());
         if (authHeader == null || authHeader == "" ||
                 !authHeader.startsWith("Bearer ") || authHeader.equals("Bearer undefined")) {
             // If no Bearer, do nothing and proceed with chain.
