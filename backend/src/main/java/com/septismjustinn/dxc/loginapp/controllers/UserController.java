@@ -24,11 +24,13 @@ public class UserController {
         this.jwtService = jwtService;
     }
 
-    @PostMapping
-    public ResponseEntity<Map<String, Object>> getUser(@RequestBody Map<String, String> req) {
+    @GetMapping
+    public ResponseEntity<Map<String, Object>> getUser(@RequestHeader("Authorization") String header) {
         Map<String, Object> res = new HashMap<>();
+        // Since protected endpoint, all requests should have a valid access token verified by security filter
+        Claims tokenBody = jwtService.extractClaim(header.substring(7));
         try {
-            Optional<User> target = userService.getUser(req.get("username"));
+            Optional<User> target = userService.getUser(tokenBody.getSubject());
             if (target.isPresent()) {
                 res.put("content", target.get());
                 res.put("status", true);
