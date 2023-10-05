@@ -39,6 +39,7 @@ public class JWTService {
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRE_DURATION))
                 .setSubject(user.getUsername())
                 .claim("name", user.getName())
+                .claim("role", user.getRole())
                 .signWith(SignatureAlgorithm.HS256, SECRET_KEY)
                 .compact();
     }
