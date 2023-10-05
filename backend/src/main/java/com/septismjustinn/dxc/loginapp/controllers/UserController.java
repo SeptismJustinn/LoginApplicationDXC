@@ -24,6 +24,11 @@ public class UserController {
         this.jwtService = jwtService;
     }
 
+    /**
+     * Endpoint for retrieving user details
+     * @param header Access token from Auth header
+     * @return Response {status: true, content: user object} or {status: false, message: error message}
+     */
     @GetMapping
     public ResponseEntity<Map<String, Object>> getUser(@RequestHeader("Authorization") String header) {
         Map<String, Object> res = new HashMap<>();

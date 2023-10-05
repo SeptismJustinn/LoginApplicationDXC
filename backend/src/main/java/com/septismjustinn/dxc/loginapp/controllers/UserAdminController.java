@@ -21,6 +21,10 @@ public class UserAdminController {
         this.userService = userService;
     }
 
+    /**
+     * Endpoint for admins to get all user details, validated by security filter
+     * @return Response {status: true, content: List of User objects} or {status: false, message: error message}
+     */
     @GetMapping
     public ResponseEntity<Map<String, Object>> getAllUsers() {
         Map<String, Object> res = new HashMap<>();

@@ -25,6 +25,11 @@ public class LoginController {
         this.jwtService = jwtService;
     }
 
+    /**
+     * Endpoint for user login
+     * @param req Request body containing valid (non-null) username and password.
+     * @return Response {status: true, content: user object} or {status: false, message: error message}
+     */
     @PostMapping
     public ResponseEntity<Map<String, Object>> loginUser(@RequestBody @Valid AuthRequest req) {
         Map<String, Object> res = new HashMap<>();
