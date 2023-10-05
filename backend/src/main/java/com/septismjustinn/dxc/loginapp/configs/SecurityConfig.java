@@ -30,6 +30,7 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http.authorizeHttpRequests(
                 (authz) -> authz
+                        .requestMatchers("/error").permitAll()
                         .requestMatchers(HttpMethod.POST, "/public/register").permitAll()
                         .requestMatchers(HttpMethod.POST, "/public/login").permitAll()
                         .requestMatchers("/public/**").permitAll()
