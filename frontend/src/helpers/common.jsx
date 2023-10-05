@@ -18,10 +18,9 @@ export async function fetchData(endpoint, token, method, body) {
       returnValue = { ok: true, data: data.content };
     }
   } else {
-    if (data?.status) {
+    if (data?.message) {
       returnValue = { ok: false, data: data.message };
     } else {
-      console.log(data);
       returnValue = { ok: false, data: "An error has occurred" };
     }
   }
