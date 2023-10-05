@@ -50,7 +50,11 @@ public class LoginController {
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            res.put("message", "Error with database");
+            if (e.getMessage() == "Bad credentials") {
+                res.put("message", "Invalid username/password");
+            } else {
+                res.put("message", "Error with database");
+            }
             res.put("status", false);
             return new ResponseEntity<>(res, HttpStatus.UNAUTHORIZED);
         }
