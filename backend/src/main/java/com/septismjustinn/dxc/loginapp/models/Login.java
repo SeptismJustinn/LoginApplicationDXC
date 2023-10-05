@@ -16,7 +16,7 @@ public class Login {
 //    @Column(name = "ACCESS_PARENT")
 //    private UUID access_parent;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "USER_ID", referencedColumnName = "ID")
     private User user;
 
