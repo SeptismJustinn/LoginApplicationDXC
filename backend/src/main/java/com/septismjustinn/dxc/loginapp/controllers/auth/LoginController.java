@@ -26,20 +26,23 @@ public class LoginController {
     }
 
     @PostMapping
-    public ResponseEntity<String> loginUser(@RequestBody @Valid AuthRequest req) {
+    public ResponseEntity<Map<String, Object>> loginUser(@RequestBody @Valid AuthRequest req) {
+        Map<String, Object> res = new HashMap<>();
         try {
             User user = loginService.login(req.getUsername(), req.getPassword());
             UUID jti = UUID.randomUUID();
             boolean registered = loginService.registerLogin(jti, user);
             if (registered) {
-                Map<String, Object> res = new HashMap<>();
                 res.put("access_token",jwtService.generateAccessToken(jti, user) );
                 return new ResponseEntity(res, HttpStatus.OK);
             } else {
-                return new ResponseEntity<>("Error with database", HttpStatus.BAD_GATEWAY);
+                throw new Exception("Unable to login user, check Logins table");
             }
-        } catch (BadCredentialsException e) {
-            return new ResponseEntity<>("Wrong username/password", HttpStatus.UNAUTHORIZED);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            res.put("data", "Error with database");
+            res.put("ok", false);
+            return new ResponseEntity<>(res, HttpStatus.UNAUTHORIZED);
         }
     }
 
