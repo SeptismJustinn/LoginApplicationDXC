@@ -4,3 +4,8 @@
   column-gap: 1%;
   row-gap: 2vh;
 }
+
+.register_button {
+  width: 10%;
+  margin-top: 1vh;
+}
