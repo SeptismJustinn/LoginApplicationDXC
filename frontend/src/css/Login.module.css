@@ -1,0 +1,6 @@
+.input_grid {
+  display: grid;
+  grid-template-columns: 10% 60%;
+  column-gap: 1%;
+  row-gap: 2vh;
+}
