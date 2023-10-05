@@ -24,7 +24,7 @@ function App() {
       return (
         <div className={styles.main_page}>
           <UsersListToggle showUsers={showUsers} setShowUsers={setShowUsers} />
-          <UserProfile user={user} />
+          <UserProfile user={user} setUser={setUser} />
           <Encoder />
         </div>
       );
@@ -32,7 +32,7 @@ function App() {
   } else if (user.role == "USER") {
     return (
       <div className={styles.main_page}>
-        <UserProfile user={user} />
+        <UserProfile user={user} setUser={setUser} />
         <Encoder />
       </div>
     );
