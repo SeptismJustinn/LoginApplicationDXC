@@ -1,0 +1,16 @@
+.profile_grid {
+  display: grid;
+  grid-template-columns: 20% 80%;
+  margin: 1vh auto;
+}
+
+.label {
+  text-align: end;
+  padding: auto 2vw;
+  border-right: none;
+}
+
+.profile_grid > div {
+  padding: 1vh 1vw;
+  border: 1px solid black;
+}
