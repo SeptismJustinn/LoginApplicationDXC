@@ -5,8 +5,8 @@ import jwtDecode from "jwt-decode";
 import User from "../helpers/objectClasses";
 
 function Login(props) {
-  const usernameRef = useRef("");
-  const passwordRef = useRef("");
+  const usernameRef = useRef();
+  const passwordRef = useRef();
 
   async function handleLogin(event) {
     event.preventDefault();
@@ -43,12 +43,10 @@ function Login(props) {
         props.setUser(new User(decoded.name, decoded.sub, decoded.role));
         alert("Logged in as user: " + decoded.sub);
       } else {
-        console.log(data);
         throw new Error(data);
       }
     } catch (error) {
-      console.log(error.message);
-      alert("Error logging in, please try again!");
+      alert(error.message + ", please try again!");
     }
   }
 
