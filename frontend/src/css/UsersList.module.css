@@ -1,0 +1,36 @@
+.table {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+}
+
+.table_header,
+.table_row {
+  display: grid;
+  grid-template-columns: 20% 60% 20%;
+}
+
+.table_header {
+  text-align: center;
+  vertical-align: middle;
+  margin: 0;
+}
+
+.table_header > h2 {
+  border: 1px solid black;
+  margin: 0;
+}
+
+.table_row > div {
+  border: 1px solid black;
+  margin: 0;
+  padding: 1vw 1vh;
+}
+
+.current_user {
+  background-color: rgba(255, 0, 0, 0.2);
+}
+
+.odd_row {
+  background-color: rgba(200, 200, 255, 0.4);
+}
