@@ -24,10 +24,13 @@ public class SecurityConfig {
     @Autowired
     private UserRepository userRepo;
 
+    // Cors headers sent in OPTIONS pre-flight but is intercepted by Spring Security
+    // Until I learn how to deal with Spring Security 6's cors, this will have to do.
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http.authorizeHttpRequests(
                 (authz) -> authz
+                        .requestMatchers(HttpMethod.OPTIONS).permitAll()
                         .requestMatchers("/error").permitAll()
                         .requestMatchers(HttpMethod.POST, "/public/register").permitAll()
                         .requestMatchers(HttpMethod.POST, "/public/login").permitAll()
