@@ -10,6 +10,17 @@ function Login(props) {
 
   async function handleLogin(event) {
     event.preventDefault();
+    if (
+      localStorage.getItem("access") &&
+      usernameRef.current.value == "" &&
+      passwordRef.current.value == ""
+    ) {
+      // Login with existing access token
+      if (await tokenLogin()) {
+        return;
+      }
+    }
+    console.log("test");
     if (usernameRef.current.value == "") {
       alert("Please enter username!");
       return usernameRef.current.focus();
@@ -38,9 +49,28 @@ function Login(props) {
     }
   }
 
+  async function tokenLogin() {
+    const access = localStorage.getItem("access");
+    try {
+      const { ok, data } = await fetchData("/public/login", access, "GET");
+      if (ok) {
+        const decoded = jwtDecode(access);
+        props.setUser(new User(decoded.name, decoded.sub, decoded.role));
+        alert("Resuming session as user: " + decoded.sub);
+        return true;
+      } else {
+        throw new Error(data);
+      }
+    } catch (error) {
+      console.log(error.message);
+      return false;
+    }
+  }
+
   return (
     <div>
       <h2>Login to view profile</h2>
+      <h3>Leave fields blank to resume old session, if still valid.</h3>
       <form onSubmit={handleLogin}>
         <div className={styles.input_grid}>
           <label htmlFor="username">Username: </label>
@@ -49,7 +79,6 @@ function Login(props) {
             id="username"
             ref={usernameRef}
             placeholder="Enter Username"
-            required
           />
           <label htmlFor="password">Password: </label>
           <input
@@ -57,7 +86,6 @@ function Login(props) {
             id="password"
             ref={passwordRef}
             placeholder="Enter Password"
-            required
           />
           <input type="submit" value="Log In" />
         </div>
