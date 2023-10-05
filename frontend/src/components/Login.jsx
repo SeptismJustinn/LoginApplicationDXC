@@ -20,12 +20,14 @@ function Login(props) {
         return;
       }
     }
-    console.log("test");
     if (usernameRef.current.value == "") {
       alert("Please enter username!");
       return usernameRef.current.focus();
     } else if (passwordRef.current.value == "") {
       alert("Please enter password!");
+      return passwordRef.current.focus();
+    } else if (passwordRef.current.value.length < 8) {
+      alert("Password is at least 8 characters long");
       return passwordRef.current.focus();
     }
     try {
@@ -41,6 +43,7 @@ function Login(props) {
         props.setUser(new User(decoded.name, decoded.sub, decoded.role));
         alert("Logged in as user: " + decoded.sub);
       } else {
+        console.log(data);
         throw new Error(data);
       }
     } catch (error) {
@@ -90,6 +93,15 @@ function Login(props) {
           <input type="submit" value="Log In" />
         </div>
       </form>
+      <input
+        type="button"
+        value="Register"
+        className={styles.register_button}
+        onClick={(e) => {
+          e.preventDefault();
+          props.setShowRegister(true);
+        }}
+      />
     </div>
   );
 }
