@@ -27,7 +27,7 @@ public class LoginService {
     public User login(String username, String password) throws BadCredentialsException {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
         User user = userRepo.findByUsername(username)
-                .orElseThrow(()->new BadCredentialsException("Invalid username/password"));
+                .orElseThrow(()->new BadCredentialsException("Bad credentials"));
         return user;
     }
 
