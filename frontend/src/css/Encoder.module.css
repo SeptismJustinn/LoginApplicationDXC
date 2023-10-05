@@ -1,3 +1,9 @@
+.switch_row {
+  display: flex;
+  margin-bottom: 5vh;
+  align-items: center;
+}
+
 .switch_container {
   width: 80px;
 }
@@ -30,4 +36,8 @@
   height: 24px;
   margin: 3px;
   border-radius: 5px;
+}
+
+.encode_text {
+  margin-left: 1vw;
 }
