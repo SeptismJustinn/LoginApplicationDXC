@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import styles from "../css/Login.module.css";
 import { fetchData } from "../helpers/common";
 import jwtDecode from "jwt-decode";
+import User from "../helpers/objectClasses";
 
 function Login(props) {
   const usernameRef = useRef("");
@@ -26,7 +27,8 @@ function Login(props) {
         const access = data.access_token;
         localStorage.setItem("access", access);
         const decoded = jwtDecode(access);
-        console.log(decoded);
+        props.setUser(new User(decoded.name, decoded.sub, decoded.role));
+        alert("Logged in as user: " + decoded.sub);
       } else {
         throw new Error(data);
       }
