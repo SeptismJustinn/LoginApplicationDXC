@@ -3,15 +3,9 @@ export default class User {
   username;
   role;
 
-  constructor() {
-    this.name = "Public";
-    this.username = "None";
-    this.role = "PUBLIC";
-  }
-
   constructor(name, username, role) {
-    this.name = name;
-    this.username = username;
-    this.role = role;
+    this.name = name || "public";
+    this.username = username || "None";
+    this.role = role || "PUBLIC";
   }
 }
